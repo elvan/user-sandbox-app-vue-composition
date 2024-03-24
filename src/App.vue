@@ -4,7 +4,6 @@
       class="test"
       :first-name="firstName"
       :last-name="lastName"
-      :age="age"
     ></user-data>
     <button @click="setAge">Change Age</button>
     <div>
@@ -16,7 +15,7 @@
 </template>
 
 <script>
-import { computed, ref, watch } from 'vue';
+import { computed, provide, ref, watch } from 'vue';
 import UserData from './components/UserData.vue';
 
 export default {
@@ -28,6 +27,8 @@ export default {
     const lastName = ref('');
     const lastNameInput = ref(null);
     const uAge = ref(31);
+
+    provide('userAge', uAge);
 
     const uName = computed(function () {
       return firstName.value + ' ' + lastName.value;
